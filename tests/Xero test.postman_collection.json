@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "c50ebe25-1f32-45c8-920f-00f8200fe8b0",
+		"name": "Xero test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products Name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products?name=samsung",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "samsung"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Products (create)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Id\": \"91d2a24b-9516-48ed-8c9c-54c35e17d37d\",\n    \"Name\": \"Google Pixel 2\",\n    \"Description\": \"Newest mobile product from Google.\",\n    \"Price\": 1199.99,\n    \"DeliveryPrice\": 24.99\n}"
+				},
+				"url": {
+					"raw": "http://localhost:58123/products/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Products (update)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Name\": \"Google Pixel 3\",\n}"
+				},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE Products Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products/91d2a24b-9516-48ed-8c9c-54c35e17d37d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"91d2a24b-9516-48ed-8c9c-54c35e17d37d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products Id options",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a3/options",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a3",
+						"options"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET Products Id options Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a3/options",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a3",
+						"options"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST Products id options (create)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"Id\": \"0643ccf0-ab00-4862-b3c5-40e2731abcc7\",\n            \"ProductId\": \"8f2e9176-35ee-4f0a-ae55-83023d2db1a3\",\n            \"Name\": \"Silver\",\n            \"Description\": \"Silver Samsung Galaxy S7\"\n        }"
+				},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a3/options/0643ccf0-ab00-4862-b3c5-40e2731abcc9",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a3",
+						"options",
+						"0643ccf0-ab00-4862-b3c5-40e2731abcc9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Products Id options Id (update)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Name\": \"Blue\",\n    \"Description\": \"Blue Samsung Galaxy S7\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a3/options/0643ccf0-ab00-4862-b3c5-40e2731abcc7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a3",
+						"options",
+						"0643ccf0-ab00-4862-b3c5-40e2731abcc7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT Products Id options Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:58123/products/8f2e9176-35ee-4f0a-ae55-83023d2db1a3/options/0643ccf0-ab00-4862-b3c5-40e2731abcc7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "58123",
+					"path": [
+						"products",
+						"8f2e9176-35ee-4f0a-ae55-83023d2db1a3",
+						"options",
+						"0643ccf0-ab00-4862-b3c5-40e2731abcc7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

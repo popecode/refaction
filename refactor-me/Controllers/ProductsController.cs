@@ -1,115 +1,95 @@
 ﻿using System;
-using System.Net;
+using System.Collections.Generic;
 using System.Web.Http;
-using refactor_me.Models;
+using refactor_me.Data;
 
 namespace refactor_me.Controllers
 {
     [RoutePrefix("products")]
     public class ProductsController : ApiController
     {
-        [Route]
-        [HttpGet]
-        public Products GetAll()
+        private readonly IRepository _repository;
+
+        public ProductsController(IRepository repository)
         {
-            return new Products();
+            _repository = repository;
         }
 
         [Route]
         [HttpGet]
-        public Products SearchByName(string name)
+        public object GetAllProducts()
         {
-            return new Products(name);
+            return new { Items = _repository.GetAllProducts() };
+        }
+
+        [Route]
+        [HttpGet]
+        public object GetProductsbyName(string name)
+        {
+            return new { Items = _repository.GetProductsbyName(name) };
         }
 
         [Route("{id}")]
         [HttpGet]
-        public Product GetProduct(Guid id)
+        public List<Product> GetProductbyId(Guid id)
         {
-            var product = new Product(id);
-            if (product.IsNew)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            return product;
+            return _repository.GetProductbyId(id);
         }
 
         [Route]
         [HttpPost]
-        public void Create(Product product)
+        public void CreateNewProduct(Product newProduct)
         {
-            product.Save();
+            _repository.CreateProduct(newProduct);
         }
 
         [Route("{id}")]
         [HttpPut]
-        public void Update(Guid id, Product product)
+        public void UpdateProductById(Guid id, Product newProduct)
         {
-            var orig = new Product(id)
-            {
-                Name = product.Name,
-                Description = product.Description,
-                Price = product.Price,
-                DeliveryPrice = product.DeliveryPrice
-            };
-
-            if (!orig.IsNew)
-                orig.Save();
+            _repository.UpdateProductById(id, newProduct);
         }
 
         [Route("{id}")]
         [HttpDelete]
-        public void Delete(Guid id)
+        public void DeleteProductbyId(Guid id)
         {
-            var product = new Product(id);
-            product.Delete();
+            _repository.DeleteProductById(id);
         }
 
         [Route("{productId}/options")]
         [HttpGet]
-        public ProductOptions GetOptions(Guid productId)
+        public object GetAllProductOptionsByProductId(Guid productId)
         {
-            return new ProductOptions(productId);
+            return new { Items = _repository.GetAllProductOptionsByProductId(productId) };
         }
 
         [Route("{productId}/options/{id}")]
         [HttpGet]
-        public ProductOption GetOption(Guid productId, Guid id)
+        public List<ProductOption> GetProductOptionByIdAndProductId(Guid productId, Guid id)
         {
-            var option = new ProductOption(id);
-            if (option.IsNew)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-
-            return option;
+            return _repository.GetProductOptionByIdAndProductId(productId, id);
         }
 
         [Route("{productId}/options")]
         [HttpPost]
-        public void CreateOption(Guid productId, ProductOption option)
+        public void CreateNewProductOptionForProductById(Guid productId, ProductOption option)
         {
-            option.ProductId = productId;
-            option.Save();
+            _repository.CreateNewProductOptionForProductById(productId, option);
         }
 
         [Route("{productId}/options/{id}")]
         [HttpPut]
-        public void UpdateOption(Guid id, ProductOption option)
+        public void UpdateProductOptionByProductId(Guid productId, Guid id, ProductOption option)
         {
-            var orig = new ProductOption(id)
-            {
-                Name = option.Name,
-                Description = option.Description
-            };
-
-            if (!orig.IsNew)
-                orig.Save();
+            _repository.UpdateProductOptionByProductId(productId, id, option);
         }
 
         [Route("{productId}/options/{id}")]
         [HttpDelete]
-        public void DeleteOption(Guid id)
+        public void DeleteProductOptionByIdAndProductId(Guid productId, Guid id)
         {
-            var opt = new ProductOption(id);
-            opt.Delete();
+            _repository.DeleteProductOptionByIdAndProductId(productId, id);
         }
     }
 }
